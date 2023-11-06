@@ -1,0 +1,18 @@
+Banco,Descrição,Depósito_mínimo
+"001","BANCO DO BRASIL               ",20.0000
+"033","BANESPA                       ",20.0000
+"104","CAIXA ECO.FEDERAL             ",20.0000
+"151","NOSSA CAIXA                   ",20.0000
+"237","BRADESCO                      ",20.0000
+"275","REAL                          ",20.0000
+"341","ITAU                          ",20.0000
+"347","SUDAMERIS BRASIL S/A          ",20.0000
+"353","SANTANDER-GERAL COM.          ",20.0000
+"399","HSBC",20.0000
+"409","UNIBANCO                      ",20.0000
+"422","SAFRA                         ",20.0000
+"424","SANTANDER                     ",20.0000
+"641","B.B.V.                        ",20.0000
+"745","CITYBANK                      ",20.0000
+"356","REAL-ABN",20.0000
+"479","BANCO BOSTON",20.0000
