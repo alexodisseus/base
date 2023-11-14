@@ -79,7 +79,8 @@ class Quota(SQLModel, table=True):
 	code:str
 	date:str
 	grouping:str #para agrupar tipo 'z a b' 
-
+	status:str
+	old:str
 	user_id: int = Field(foreign_key='user.id')
 
 
@@ -126,6 +127,33 @@ def push_shareholder(
 		
 		session.add(adress)
 		session.commit()
+
+def push_quote(
+	code:str,
+	grouping:str,
+	user:str,
+	date:str
+
+	
+	):
+	with Session(engine) as session:
+		print(user)
+		query = select(User ).where(User.code==user ) 
+		us = session.exec(query).first()
+		print(us)
+		"""
+		quote = Quota(code=code,date=date, grouping=grouping, user_id = user)
+		session.add(quote)
+
+		session.commit()
+		session.refresh(user)
+		adress = Address(street = street, number = number, cep = cep,city=city,state=state, user_id=user.id)
+		
+		session.add(adress)
+		session.commit()
+		"""
+
+
 
 def update_shareholder(
 	name:str, 
