@@ -1,7 +1,7 @@
 import model
 
 
-with open('txt/titulos.txt', 'r') as arquivo:
+with open('txt/cotistas.txt', 'r') as arquivo:
     linhas = arquivo.readlines()
 
 x=0
@@ -12,12 +12,14 @@ for linha in linhas:
     else:
         asd = linha.split(',')
         print(asd)
-        #model.push_shareholder(asd[1].replace('"','').strip(),'',asd[10].replace('"','').strip(),'','','',asd[0].replace('"','').strip(),asd[2].replace('"','').strip(),asd[3].replace('"','').strip(),asd[6].replace('"','')+"-"+asd[7].replace('"','').strip(),asd[4].replace('"','').strip(),asd[5].replace('"','').strip())
+        model.push_shareholder(asd[1].replace('"','').strip(),'',asd[10].replace('"','').strip(),'','','',asd[0].replace('"','').strip(),asd[2].replace('"','').strip(),asd[3].replace('"','').strip(),asd[6].replace('"','')+"-"+asd[7].replace('"','').strip(),asd[4].replace('"','').strip(),asd[5].replace('"','').strip())
+        """
         model.push_quote(asd[0].replace('"','').strip(),
             asd[1].replace('"','').strip(),
             asd[7].replace('"','').strip(),
             asd[2].replace('"','').strip(),
             )
+        """    
 
 
 

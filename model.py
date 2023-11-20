@@ -78,7 +78,7 @@ class Quota(SQLModel, table=True):
 	id: Optional[int] = Field(default=None, primary_key=True)
 	code:str
 	date:str
-	grouping:str #para agrupar tipo 'z a b' 
+	grouping:str #para agrupar tipo 'z a b'
 	status:str
 	old:str
 	user_id: int = Field(foreign_key='user.id')
@@ -128,32 +128,61 @@ def push_shareholder(
 		session.add(adress)
 		session.commit()
 
-def push_quote(
-	code:str,
-	grouping:str,
-	user:str,
-	date:str
-
-	
-	):
-	with Session(engine) as session:
-		print(user)
-		query = select(User ).where(User.code==user ) 
-		us = session.exec(query).first()
-		print(us)
-		"""
-		quote = Quota(code=code,date=date, grouping=grouping, user_id = user)
-		session.add(quote)
-
-		session.commit()
-		session.refresh(user)
-		adress = Address(street = street, number = number, cep = cep,city=city,state=state, user_id=user.id)
-		
-		session.add(adress)
-		session.commit()
-		"""
 
 
+
+
+
+
+def push_quote(data):
+    print(data)
+    
+    old = data[2].replace('"','').strip()
+    code = data[0].replace('"','').strip()
+    grouping = data[3].replace('"','').strip()
+    status = data[1].replace('"','').strip()
+    date = data[5].replace('"','').strip() + "/"+ data[6].replace('"','').strip()
+    user = data[7].replace('"','').strip()
+    
+    if data[7]== "\n":
+        user = '999999'
+    print(user)
+
+    
+    
+    
+    with Session(engine) as session:
+        query = select(User ).where(User.code==user )
+        us = session.exec(query).first()
+        print(us)
+        quote = Quota()
+        
+        quote.old = old
+        quote.code = code
+        quote.grouping = grouping
+        quote.status = status
+        quote.date = date
+        
+        if us:
+            quote.user_id = us.id
+        else:
+            quote.user_id = 1001
+        session.add(quote)
+        session.commit()
+
+
+"""
+
+"A200105",
+"A",
+"023460",
+1,
+"11/01/68 00:00:00",
+"10",
+"1985",
+''
+
+"""
 
 def update_shareholder(
 	name:str, 
@@ -201,6 +230,22 @@ def view_user_shareholder(id:str):
 
 		data = session.exec(query).first()
 		return data
+
+
+
+
+"""
+		quote = Quota(code=code,date=date, grouping=grouping, user_id = user)
+		session.add(quote)
+
+		session.commit()
+		session.refresh(user)
+		adress = Address(street = street, number = number, cep = cep,city=city,state=state, user_id=user.id)
+		
+		session.add(adress)
+		session.commit()
+"""
+
 
 """
 
